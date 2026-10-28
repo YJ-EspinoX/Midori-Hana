@@ -1,0 +1,72 @@
+# Dependencias
+node_modules/
+
+# Sesión y credenciales de Baileys
+midori-session/
+session/
+creds.json
+auth_info.json
+*.pem
+*.key
+*.crt
+
+# Datos de usuarios y perfiles
+base/perfiles/
+
+# Base de datos SQLite
+midori.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Temporales
+tmp/
+temp/
+*.tmp
+*.temp
+*.log
+logs/
+
+# Entorno
+.env
+.env.local
+.env.production
+.env.development
+
+# IDE y sistema
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Backups
+*.bak
+*.backup
+*.old
+
+# Caché
+.cache/
+.cache-*
+*.cache
+
+# Build
+dist/
+build/
+out/
+coverage/
+.nyc_output/
+
+# PID
+*.pid
+.pid
+
+# Secretos
+*.p12
+*.pfx
+secrets/
+keys/

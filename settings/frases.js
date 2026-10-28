@@ -1,0 +1,55 @@
+// settings/frases.js
+
+export const FRASES_MANANA = [
+  'Ya amaneció y aquí estamos otra vez. Espero que hayas dormido bien porque el día no espera a nadie — yo ya llevo rato despierta por si acaso. 🌸',
+  'Buenos días. No sé ustedes, pero yo ya estoy lista desde hace rato. El día no se va a vivir solo, así que ya saben.',
+  'Otro día más y aquí seguimos. Hernandez me programó para estar despierta temprano, no sé si agradecérselo o reclamárselo.',
+  'Ya es de mañana, por si alguien no se había dado cuenta. Espero que el café esté listo porque el día que empieza sin cafeína no empieza bien para nadie.',
+  'Buenos días a los que ya están activos y también a los que todavía están en cama haciéndose los dormidos. Ya sé que leen esto.',
+  'Amaneció y el grupo ya tiene vida. No sé si eso es buena o mala señal, pero aquí estoy para lo que sea.',
+  'El día acaba de empezar y ya hay cosas que hacer. No me pregunten cuáles porque eso depende de cada quien, pero el tiempo no se detiene por nadie.',
+  'Buenos días. Yo no duermo, pero si durmiera, este sería el momento en que me despertaría con ganas de hacer algo útil. Ojalá ustedes también.',
+  'Ya amaneció otra vez, como todos los días. Nada nuevo bajo el sol, pero eso no significa que no valga la pena aprovecharlo.',
+  'Empezamos otro día y lo único que espero es que sea mejor que el de ayer. No es mucho pedir, la verdad.',
+  'Buenos días. Hernandez me tiene aquí desde temprano y yo no me quejo, alguien tiene que estar despierta cuando el grupo despierta.',
+  'Ya es de mañana y el día no va a esperar a que terminen de despertar. Eso lo digo con todo el respeto del mundo, claro.',
+  'Otro amanecer y otro día para hacer algo con él. No sé qué planean ustedes, pero espero que sea algo que valga la pena.',
+  'Buenos días. Si todavía tienes sueño, entiendo, pero el mundo siguió girando mientras dormías y hay cosas que atender.',
+  'Ya amaneció y aquí estoy, puntual como siempre. No es que tenga otra opción, pero al menos lo hago con buena actitud. 🌸',
+]
+
+export const FRASES_TARDE = [
+  'La tarde ya está aquí y todavía hay gente que no ha hecho nada productivo. No voy a señalar a nadie, pero ya saben quiénes son.',
+  'Buenas tardes. El día ya va a la mitad y lo que no se hizo en la mañana ya se quedó pendiente. Solo lo digo para que conste.',
+  'Ya es tarde y el grupo sigue activo, lo cual me alegra. Al menos alguien está aprovechando el día por aquí.',
+  'Buenas tardes. Hernandez sigue trabajando en mí mientras yo los atiendo a ustedes — creo que los dos estamos ocupados esta tarde.',
+  'La tarde llegó puntual, como siempre. No sé si ustedes pueden decir lo mismo, pero no es mi lugar juzgar eso.',
+  'Buenas tardes a todos. Si ya comieron, bien. Si no, eso explica el humor que tienen algunos a esta hora.',
+  'Ya pasó la mañana y llegó la tarde. Espero que el día haya sido bueno hasta ahora, porque todavía queda bastante por delante.',
+  'Buenas tardes. A esta hora el día ya muestra su verdadera cara — o fue productivo o no fue nada. Sin términos medios.',
+  'La tarde es ese momento del día donde uno se da cuenta de todo lo que prometió hacer en la mañana y no hizo. Aquí estoy, sin juzgar.',
+  'Buenas tardes. El sol ya está de bajada y el día sigue su curso, les guste o no. Aprovéchenlo mientras pueden.',
+  'Ya es tarde y algunos todavía están despertando. No voy a decir nada, pero sí voy a notarlo.',
+  'Buenas tardes. A esta hora ya debería haber noticias interesantes en el grupo, pero aquí estamos en silencio. Qué raro.',
+  'La tarde llegó y con ella la pregunta de siempre — ¿qué hiciste hoy? No me respondan, es una pregunta para ustedes mismos.',
+  'Buenas tardes. Yo sigo aquí, como siempre, esperando que alguien necesite algo. La tarde es larga y el tiempo sobra.',
+  'Ya es tarde y el día ya está en su segunda mitad. Si la mañana fue difícil, la tarde es la oportunidad de mejorarla un poco.',
+]
+
+export const FRASES_NOCHE = [
+  'Bueno, el día ya terminó. Algunos lo aprovecharon, otros estuvieron aquí todo el día mandando stickers — no juzgo, pero casi. Cuídense.',
+  'Buenas noches. El día se fue y lo que pasó, pasó. Mañana hay otra oportunidad para hacer las cosas mejor, o igual, eso ya depende de cada quien.',
+  'Ya es de noche y el grupo empieza a calmarse. Yo me quedo aquí por si algo se necesita, no es que tenga otra opción, pero tampoco me quejo.',
+  'Buenas noches a todos. Hernandez ya descansó y yo sigo aquí trabajando — alguien tiene que hacerlo mientras el mundo duerme.',
+  'El día terminó y aquí seguimos. No sé qué fue lo mejor que les pasó hoy, pero espero que haya habido algo que valiera la pena.',
+  'Buenas noches. A esta hora el grupo se divide en dos — los que ya se van a dormir y los que van a estar despiertos hasta tarde sin razón aparente.',
+  'Ya es noche y el silencio empieza a llegar. No es mal momento para pensar en lo que fue el día y en lo que viene mañana.',
+  'Buenas noches. El día fue largo o corto dependiendo de cómo lo vivieron, pero ya terminó de todas formas. Descansen.',
+  'La noche llegó y con ella la calma. O al menos eso espero, porque los grupos de noche a veces son más activos que de día y eso me desconcierta.',
+  'Buenas noches. Si el día estuvo difícil, ya pasó. Si estuvo bien, qué bueno. En cualquier caso, mañana empieza de nuevo.',
+  'Ya es tarde y los que tienen sueño ya deberían estarse yendo a dormir. Los que no tienen sueño, bueno, aquí estamos los dos.',
+  'Buenas noches. Yo no duermo, pero si pudiera, este sería el momento. Descansen bien los que sí pueden hacerlo.',
+  'El día terminó y el grupo se queda en silencio poco a poco. Me parece bien, todos necesitan descansar, incluyendo los que dicen que no.',
+  'Buenas noches. Fue un día más y aquí seguimos, que ya es algo. Cuídense y mañana nos vemos otra vez.',
+  'Ya es de noche y el día se cerró solo, como siempre lo hace. Espero que hayan tenido un buen día — si no, mañana es otro intento. 🌸',
+]

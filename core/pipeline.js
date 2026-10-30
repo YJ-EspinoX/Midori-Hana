@@ -28,19 +28,51 @@ async function getCachedGroupMetadata(sock, groupId) {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+// Desenvuelve mensajes temporales, de ver una vez y documentos con título
+const WRAPPERS = ['ephemeralMessage', 'viewOnceMessage', 'viewOnceMessageV2', 'viewOnceMessageV2Extension', 'documentWithCaptionMessage']
+
+function unwrap(m) {
+  let k
+  while (m && (k = WRAPPERS.find(w => m[w]?.message))) m = m[k].message
+  return m
+}
+
 function extractText(msg) {
-  const m = msg.message
+  const m = unwrap(msg.message)
   return m?.conversation
       || m?.extendedTextMessage?.text
       || m?.imageMessage?.caption
       || m?.videoMessage?.caption
       || m?.documentMessage?.caption
-      || m?.viewOnceMessage?.message?.imageMessage?.caption
-      || m?.viewOnceMessageV2?.message?.imageMessage?.caption
-      || m?.viewOnceMessageV2Extension?.message?.imageMessage?.caption
       || m?.buttonsMessage?.contentText
       || m?.templateMessage?.hydratedTemplate?.hydratedContentText
       || ''
+}
+
+// Qué mostrar en la consola: el texto, o el tipo de contenido si no hay texto
+const TIPOS = {
+  imageMessage: 'imagen', videoMessage: 'video', stickerMessage: 'sticker', audioMessage: 'audio',
+  documentMessage: 'documento', contactMessage: 'contacto', contactsArrayMessage: 'contactos',
+  locationMessage: 'ubicación', liveLocationMessage: 'ubicación en vivo', reactionMessage: 'reacción',
+  pollCreationMessage: 'encuesta', pollCreationMessageV2: 'encuesta', pollCreationMessageV3: 'encuesta'
+}
+const RUIDO = ['protocolMessage', 'senderKeyDistributionMessage', 'messageContextInfo']
+
+function describirMensaje(msg) {
+  const m     = unwrap(msg.message) || {}
+  const texto = extractText(msg)
+  const clave = Object.keys(TIPOS).find(k => m[k])
+
+  if (!clave) {
+    if (texto) return texto
+    const otra = Object.keys(m).find(k => !RUIDO.includes(k))
+    return otra ? `[${otra.replace(/Message$/, '')}]` : ''
+  }
+
+  const tipo  = clave === 'audioMessage' && m.audioMessage.ptt ? 'nota de voz' : TIPOS[clave]
+  const extra = clave === 'reactionMessage' ? m.reactionMessage.text
+              : texto || (clave === 'documentMessage' ? m.documentMessage.fileName : '')
+  return `[${tipo}]${extra ? ' ' + extra : ''}`
 }
 
 function matchPrefix(text, groupCfg) {
@@ -220,7 +252,7 @@ async function dispatch(ctx, sock, msg, match) {
 
   const [cmdName, ...args] = match.rest.split(/\s+/)
   const cmd = commands.get(cmdName.toLowerCase())
-  if (!cmd) return
+  if (!cmd) { logger.msg(ctx.userNum || cleanNumber(ctx.sender), textStr); return }
 
   if (cmd.owner && !ctx.isOwner) {
     await sock.sendMessage(ctx.from, { text: global.messages?.ownerOnly }, { quoted: msg })
@@ -232,7 +264,7 @@ async function dispatch(ctx, sock, msg, match) {
   }
   if (ctx.isGroup && !ctx.isOwner && !ctx.isAdmin && isIgnored(ctx.from, ctx.userNum)) return
 
-  logger.cmd(cmdName, ctx.userNum, ctx.isGroup ? ctx.groupCfg?.name : null)
+  logger.cmd(ctx.userNum || cleanNumber(ctx.sender), textStr)
 
   await delay()
   await cmd.execute(sock, msg, { ...ctx, args, prefix: match.prefix }).catch(err => {
@@ -247,6 +279,14 @@ export async function handleMessage(sock, msg) {
   try {
     const ctx = await resolveContext(sock, msg)
 
+    const textStr = extractText(msg)
+    const match   = matchPrefix(textStr, ctx.groupCfg)
+
+    if (!match) {
+      const que = describirMensaje(msg)
+      if (que) logger.msg(ctx.userNum || cleanNumber(ctx.sender), que)
+    }
+
     if (ctx.isGroup && !ctx.fromMe) {
       trackActivity(ctx.from, ctx.userNum)
       if (msg.key?.id) saveMsg(ctx.from, msg.key.id, ctx.sender)
@@ -255,9 +295,6 @@ export async function handleMessage(sock, msg) {
     if (await stepAntiLink(ctx, sock, msg))  return
     if (await stepMute(ctx, sock, msg))      return
     if (await stepAntiToxic(ctx, sock, msg)) return
-
-    const textStr = extractText(msg) || ''
-    const match   = matchPrefix(textStr, ctx.groupCfg)
 
     if (match && await stepGuards(ctx, sock, msg)) return
 
